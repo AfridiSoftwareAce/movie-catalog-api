@@ -1,73 +1,110 @@
-Movie, Series Management Application
-This is a Node.js application for managing movies and series content. The application allows users to perform CRUD operations on movies, series, and includes authentication, file upload, and other API features.
 
-Table of Contents
-Introduction
-Features
-Technologies Used
-Installation
-Usage
-API Endpoints
-Environment Variables
-Contributing
-License
-Acknowledgements
 
-Introduction
-The Movie, Series Management Application allows users to manage movies and series information through various API endpoints. It includes user authentication and authorization mechanisms, file upload functionality for movie posters, and other features like search, pagination, and role-based access control.
+---
 
-Features
-User Authentication and Authorization
-CRUD Operations for Movies and Series
-File Upload for Movie Posters
-Search Movies by Title, Genre, or Cast Crew Details
-Pagination and Sorting for Movie Listings
-Role-Based Access Control for Different Actions
-User Activity Logging for Audit and Monitoring
-Email Verification and Password Reset Mechanisms (Testing with Postman)
+# Movie Series Management Application
 
-Technologies Used
-Node.js
-Express.js
-MongoDB (Database)
-Mongoose (ODM)
-Multer (File Upload)
-JWT (JSON Web Tokens) for Authentication
-Nodemailer (Email Sending - Customized for Postman Testing)
-Other npm packages as required
+The Movie Series Management Application is a robust Node.js API that provides functionality for managing a collection of movies and series. The API supports user authentication, CRUD operations on movie series, file upload for movie posters, and additional features such as search, filtering, pagination, and sorting.
 
-Installation
-Clone the repository:
-git clone https://github.com/your_username/your_project.git
-cd your_project
+## Table of Contents
 
-Install dependencies:
+1. [Features](#features)
+2. [Requirements](#requirements)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [API Documentation](#api-documentation)
+6. [Environment Variables](#environment-variables)
+7. [Contributing](#contributing)
+8. [License](#license)
+9. [Contact](#contact)
+
+## <a name="features"></a>Features
+
+The Movie Series Management Application offers the following features:
+- User Authentication: Supports user registration, login, password resetting, and email verification.
+- Role-based Authorization: Define access control for different user roles, allowing certain operations only for administrators.
+- Movie Management: Supports CRUD operations for movies, including fields such as title, genre, release year, director, duration, plot, and added by (administrator).
+- File Upload: Supports uploading movie posters or cover images.
+- Search and Filtering: Users can search for movies and series by title, genre, or plot.
+- Pagination and Sorting: The API lists movies with pagination and sorting options.
+
+## <a name="requirements"></a>Requirements
+
+The following are required to run the Movie Series Management Application:
+
+- Node.js
+- MongoDB database
+
+## <a name="installation"></a>Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/AfridiSoftwareAce/movie-catalog-api
+cd movie-catalog-api
+```
+
+2. Install dependencies:
+
+```bash
 npm install
+```
 
-Set up the environment variables by creating a .env file in the root directory (See Environment Variables section below).
+3. Set up environment variables: Create a .env file in the root directory with the following content:
 
-Start the application: node app.js
-
-Usage
-Once the application is up and running, you can use API clients like Postman  to interact with the API endpoints.
-For detailed API documentation, refer to the API Endpoints section below.
-
-API Endpoints
-Detailed API documentation will be provided here, listing all available endpoints, request methods, and required parameters.
-
-Environment Variables
-Create a .env file in the root directory with the following variables:
-
-MONGODB_URI=your_mongodb_connection_uri
-JWT_SECRET=your_jwt_secret_key
+```bash
+# Server configurations
 PORT=3000
-SMTP_HOST=your_smtp_host
-SMTP_PORT=your_smtp_port
-SMTP_USER=your_smtp_user
-SMTP_PASS=your_smtp_password
-SMTP_EMAIL=your_email_address
+JWT_SECRET=your_jwt_secret_key
 
-Replace your_mongodb_connection_uri, your_jwt_secret_key, your_smtp_host, your_smtp_port, your_smtp_user, your_smtp_password, and your_email_address with your actual values.
+# MongoDB connection URI
+MONGODB_URI=mongodb://localhost:27017/movie_series_db
 
-Contributing
-Contributions are welcome! If you find any issues or want to add new features, feel free to open a pull request.
+# Nodemailer configurations for email service
+EMAIL_SERVICE=your_email_service_provider
+EMAIL_USER=your_email_address
+EMAIL_PASSWORD=your_email_password
+```
+
+Remember to replace the placeholders in the `.env` variables with your actual configurations.
+
+4. Start the application:
+
+```bash
+node app.js
+```
+
+## <a name="usage"></a>Usage
+
+The Movie Series Management API can be accessed using tools like Postman or curl. Ensure you have set up the environment variables correctly and the server is running.
+
+## <a name="api-documentation"></a>API Documentation
+
+The Movie Series Management API provides the following endpoints:
+
+### User Authentication and Authorization
+- POST /api/auth/register: Register a new user. Required fields: email, username, password, role.
+- POST /api/auth/login: Login as a user. Required fields: email, password.
+- POST /api/auth/verify-email: Verify the user's email address. Required fields: token.
+- POST /api/auth/forgot-password: Send a password reset email. Required fields: email.
+- POST /api/auth/reset-password: Reset user's password. Required fields: token, password.
+
+### Movie Management
+- POST /api/movies: Create a new movie. Required fields: title, genre, plot, addedBy (user's id).
+- PUT /api/movies/:id: Update an existing movie by ID. Required fields: title, genre, plot.
+- DELETE /api/movies/:id: Delete a movie by ID.
+- GET /api/movies/:id: Get a movie by ID.
+- GET /api/movies: Get all movies with pagination and sorting. Query parameters: page, limit, sort.
+- GET /api/movies/search: Search movies by title, genre, or plot. Query parameters: title, genre, plot.
+- POST /api/movies/:id/upload-poster: Upload a movie poster image. File field: poster.
+
+## <a name="contact"></a>Contact
+
+For any issues, questions, or suggestions, please feel free to contact me, Afridi Wara, at afridiwara@ymail.com
+
+## <a name="license"></a>License
+
+This project is licensed under the MIT License. 
+
+---
+
